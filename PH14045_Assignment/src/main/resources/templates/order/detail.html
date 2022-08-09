@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::body})}">
+<body>
+<table class="table table-bordered table-striped table-hover mt-4 mb-4">
+	<thead>
+	<tr>
+		<th>Sản phẩm</th>
+		<th>Đơn giá</th>
+		<th>Số lượng</th>
+		<th>Hãng</th>
+		<th>Hình ảnh</th>
+		<th>Tổng</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr th:each="item:${orderDetails}" th:object="${item}">
+		<td>[[*{product.name}]]</td>
+		<td>[[*{price}]]</td>
+		<td>[[*{quantity}]]</td>
+		<td>[[*{product.brand}]]</td>
+		<td><img th:src="@{|/img/*{product.image}|}" class="img-fluid" style="width: 140px"></td>
+		<td>[[*{price*quantity}]]</td>
+	</tr>
+	</tbody>
+</table>
+</body>
+</html>

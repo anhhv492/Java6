@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/" th:fragment="dynamic(main)">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment</title>
+  <link rel="stylesheet" href="/css/bootstrap.min.css">
+  <link rel="stylesheet" href="/css/templatemo.css">
+  <link rel="stylesheet" href="/css/custom.css">
+  <!-- Load fonts style after rendering the layout styles -->
+  <link rel="stylesheet" href="/css/fontawesome.min.css">
+  <link rel="stylesheet" href="/fonts/material-icon/css/material-design-iconic-font.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body ng-app="cart-app" ng-controller="cart-ctrl">
+    <nav class="row">
+      <div th:replace="/layout/_menu"></div>
+    </nav>
+    <div th:replace="${main}"></div>
+    <div th:replace="/layout/footer"></div>
+    <script src="/ctrl/cart-app.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>

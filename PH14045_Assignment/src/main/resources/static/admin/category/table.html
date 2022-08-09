@@ -1,0 +1,17 @@
+<table class="table table-secondary table-bordered table-striped table-hover mt-3">
+	<thead>
+	<tr class="row">
+		<th>Tên</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr ng-repeat="item in categories">
+		<td class="row">
+			<div class="col-8"><input ng-model="item.name" ng-change="update(item)"
+									  ng-model-options="{ debounce: 2000 }"
+									  type="text" class="form-control"></div>
+			<div class="col-2"><a type="button" class="btn btn-danger" ng-click="delete(item)">Xóa</a></div>
+		</td>
+	</tr>
+	</tbody>
+</table>

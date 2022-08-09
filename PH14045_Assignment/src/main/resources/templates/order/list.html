@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::body})}">
+	<body >
+		<table class="table table-bordered table-striped table-hover  mt-4 mb-4">
+			<thead>
+			<tr>
+				<th>Họ tên</th>
+				<th>Ngày mua</th>
+				<th>Địa chỉ nhận</th>
+				<th>Tổng đơn hàng (VNĐ)</th>
+				<th>Thao tác</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr th:each="order:${orders}" th:object="${order}">
+				<td>[[${order.account.fullname}]]</td>
+				<td>[[*{createDate}]]</td>
+				<td>[[*{address}]]</td>
+				<td>[[*{#numbers.formatDecimal(total,0,'COMMA',0,'POINT')}]]</td>
+				<td><a class="btn btn-dark" th:href="@{|/order/detail/*{id}|}">Chi tiết</a></td>
+			</tr>
+			</tbody>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/" th:replace="~{/layout/index::dynamic(~{::body})}">
+<head>
+  <meta charset="UTF-8" />
+  <title>Assignment</title>
+</head>
+<body>
+  <div class="container card">
+	<div class="row offset-1 mt-3">
+		<h2 class="form-title text-success mt-3">Đăng nhập</h2>
+		<!-- form -->
+		<span th:if="${logoff}" class="alert alert-success">[[${logoff}]]</span>
+		<span th:if="${mess}" class="alert alert-danger">[[${mess}]]</span>
+		<form method="POST" class="col-6"
+			th:action="@{/auth/login}" th:object="${account}">
+			<div class="form-group mt-3">
+				<label for="email"><i class="zmdi zmdi-email"></i></label>
+				<input th:field="*{username}" type="text" placeholder="Username" class="form-control"/>
+			</div>
+			<div class="form-group mt-3">
+				<label for="pass"><i class="zmdi zmdi-lock"></i></label>
+				<input th:field="*{password}" type="password" placeholder="Password" class="form-control"/>
+			</div>
+			<div class="mt-3">
+				<button class="btn btn-dark">Đăng nhập</button>
+			</div>
+		</form>
+		<div class="col-4 container">
+			<img src="/img/signup-image.jpg"
+				alt="sing up image">
+		</div>
+		<div class="offset-4">
+			<a href="#">I Forget Password?</a>
+		</div>
+	</div>
+</div>
+</body>
+</html>

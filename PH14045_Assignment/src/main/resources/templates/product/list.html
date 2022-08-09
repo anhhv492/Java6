@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::body})}">
+	<body>
+		<table class="table table-secondary table-bordered table-striped table-hover">
+		<thead>
+			<tr>
+				<th>Tên</th>
+				<th>Giá</th>
+				<th>Màu sắc</th>
+				<th>Số lượng</th>
+				<th>Chất liệu</th>
+				<th>Kích thước</th>
+				<th>Ngày tạo</th>
+				<th>Loại</th>
+				<th>Ảnh</th>
+				<th>NSX</th>
+				<th>Thao tác</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="list:${products}">
+				<td>[[${list.name }]]</td>
+				<td>[[${list.price}]]</td>
+				<td>[[${list.color }]]</td>
+				<td>[[${list.count }]]</td>
+				<td>[[${list.matter }]]</td>
+				<td>[[${list.size }]]</td>
+				<td>[[${list.createDate}]]</td>
+				<td>[[${list.category.name}]]</td>
+				<td><img th:src="@{|/img/${list.image}|}" class="img-fluid" style="height: 100px; width: 100px"></td>
+				<td>[[${list.brand}]]</td>
+				<td>
+					<a href="/admin/towel/update?id=${list.id}" class="btn btn-warning">Chọn</a>
+					<!-- Button trigger modal -->
+					<button type="button" data-bs-target="#id${list.id}" class="btn btn-danger" data-bs-toggle="modal">
+					  Xóa
+					</button>
+					
+					<!-- Modal -->
+					<div class="modal fade text-dark" id="id${list.id}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+					  <div class="modal-dialog">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">Bạn có muốn xóa?</h5>
+					        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					      </div>
+					      <div class="modal-body">
+					        Xóa không thể khôi phục lại!
+					      </div>
+					      <div class="modal-footer"> 
+					      	<a href="/admin/towel/delete?id=${list.id}" class="btn btn-primary">Xác nhận!</a>
+					     
+					        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>		
+					      </div>
+					    </div>
+					  </div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>	
+	</body>
+</html>

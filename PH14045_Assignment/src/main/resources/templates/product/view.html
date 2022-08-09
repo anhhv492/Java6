@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{/layout/index::dynamic(~{::body})}">
+	<body>
+		<section class="bg-light">
+		<div class="container">
+			<div class="container py-5">
+			<div class="col-lg-6 m-auto">
+				<h1 class="h1">Featured Product</h1>
+				<p>Reprehenderit in voluptate velit esse cillum dolore eu fugiat
+					nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+			</div>
+		</div>
+		<div class="row">
+		<div class="alert alert-warning" th:unless="${products}">
+		Sản phẩm đã hết hàng!
+		</div>
+			<div class="col-12 col-md-4 mt-1 mb-3"  th:if="${products}" th:each="pro:${products}">
+				<div class="card">
+					<a th:href="@{|/product/detail/${pro.id}|}" class="text-center"> <img
+						th:src="@{|/img/${pro.image}|}"style="width: 300px;height: 320px" 
+						class="card-img-top img-fluid"
+						alt="...">
+					</a>
+					<div class="card-body">
+						<ul class="list-unstyled d-flex justify-content-between">
+							
+							<li class="text-muted text-dark">$[[${#numbers.formatDecimal(pro.price,0,'COMMA',0,'POINT')}]]</li>
+						</ul>
+						<h5
+							class="h2 text-decoration-none text-dark">[[${pro.name}]]</h5>
+						
+						<a class="btn btn-dark" th:href="@{|/product/detail/${pro.id}|}">
+							Chi tiết
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		</section>
+	</body>
+</html>

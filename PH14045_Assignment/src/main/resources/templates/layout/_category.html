@@ -1,0 +1,6 @@
+
+<ul class="dropdown-menu start-50" aria-labelledby="danhmuc">
+	<c:forEach items="${sessionScope.listCates }" var="cates">
+		<li><a class="dropdown-item" href="/cart/shop?id=${cates.id }"></a></li>
+	</c:forEach>
+</ul> 

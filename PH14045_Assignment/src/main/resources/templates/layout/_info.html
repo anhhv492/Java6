@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="https://www.thymeleaf.org/" >
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+	<main>
+		<h3 th:unless="${#request.remoteUser}">
+			<i style="color:red">chua dang nhap</i>
+		</h3>
+		<div th:if="${#request.remoteUser}">
+			<h3 style="color:blue">Authentication</h3>
+			<ul>
+				<li>user: <b>[[${#request.remoteUser}]]</b></li>
+				<li>is admin: <b>[[${#request.isUserInRole('ADMIN')}]]</b></li>
+			</ul>
+			<ul th:object="${#request.userPrincipal}">
+				<li>username <b>[[*{name}]]</b></li>
+				<li>roles <b>[[*{authorities}]]</b></li>
+			</ul>
+			<ul th:if="${#request.remoteUser}">
+				<li th:if="${#request.isUserInRole('ADMIN')}">ADMIN</li>
+				<li th:if="${#request.isUserInRole('USER')}">USER</li>
+				<li th:if="${#request.isUserInRole('GUEST')}">GUEST</li>
+			</ul>
+		</div>
+	</main>
+	
+</body>
+</html>

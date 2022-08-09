@@ -1,0 +1,115 @@
+<nav
+  class="navbar navbar-expand-lg bg-dark navbar-light d-none d-lg-block"
+  id="templatemo_nav_top"
+>
+  <div class="container text-light">
+    <div class="w-100 d-flex justify-content-between">
+      <div>
+        <i class="fa fa-envelope mx-2"></i>
+        <a class="navbar-sm-brand text-light text-decoration-none"
+          >Info: anhhv492@gmail.com</a
+        >
+        <i class="fa fa-phone mx-2"></i>
+        <a class="navbar-sm-brand text-light text-decoration-none" href="#"
+          >098-429-7473</a
+        >
+      </div>
+      <div>
+        <a
+          class="text-light"
+          href="https://facebook.com/vietanhvs"
+          target="_blank"
+          rel="sponsored"
+          ><i class="fab fa-facebook-f fa-sm fa-fw me-2"></i
+        ></a>
+        <a
+          class="text-light"
+          href="https://www.instagram.com/vietanhvs/"
+          target="_blank"
+          ><i class="fab fa-instagram fa-sm fa-fw me-2"></i
+        ></a>
+        <a class="text-light" href="https://twitter.com/" target="_blank"
+          ><i class="fab fa-twitter fa-sm fa-fw me-2"></i></a
+        ><a class="text-light" href="https://www.linkedin.com/" target="_blank"
+          ><i class="fab fa-linkedin fa-sm fa-fw"></i
+        ></a>
+      </div>
+    </div>
+  </div>
+</nav>
+<nav class="navbar navbar-expand-lg navbar-light shadow">
+  <div
+    class="container d-flex justify-content-between align-items-center">
+
+    <a class="navbar-brand text-success logo h1 align-self-center"
+      href="/home/index">VANH</a>
+
+    <button class="navbar-toggler border-0" type="button"
+      data-bs-toggle="collapse" data-bs-target="#templatemo_main_nav"
+      aria-controls="navbarSupportedContent" aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div
+      class="align-self-center collapse navbar-collapse flex-fill d-lg-flex justify-content-lg-between"
+      id="templatemo_main_nav">
+      
+      <div class="flex-fill ">
+      
+        <ul
+          class="nav navbar-nav d-flex justify-content-between mx-lg-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/home/index">Trang chủ</a>
+          </li>
+          <a class="btn" data-bs-toggle="dropdown" id="#danhmuc">Danh mục</a>
+			<!-- list danh muc -->
+			<ul class="dropdown-menu start-50" aria-labelledby="danhmuc">
+				<li th:each="cate:${session.categories}">
+					<a class="dropdown-item" th:href="@{|/product/list/${cate.id}|}">[[${cate.name}]]</a>
+			</ul> 
+      <!-- cart -->
+      <li class="nav-item">
+        <a class="nav-link" th:href="@{/cart/view}">Giỏ hàng 
+          <span class="badge top-0 start-100 rounded-pill bg-success translate-middle">{{counts()}}</span>
+        </a>
+      </li>
+        </ul>
+        
+      </div>
+      <div class="navbar align-self-center d-flex">	
+		<span th:if="${#request.remoteUser}">
+		<a class="nav-icon position-relative text-decoration-none"
+            href="/admin/product/index" id="manage" th:if="${#request.isUserInRole('ADMIN')}"> <i
+            class="fa fa-briefcase text-dark "></i> <span
+            class="">Quản lý</span>
+          </a>
+		</span>          
+        <a class="nav-icon position-relative text-decoration-none dropdown-toggle"
+          href="#" id="signUp" data-bs-toggle="dropdown"> <i
+          class="fa fa-fw fa-user text-dark mr-3"></i> <span
+          class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark"></span>    
+          <span th:if="${#request.remoteUser}" th:object="${#request.userPrincipal}" >
+				[[*{#strings.toLowerCase(name)}]]
+			</span>
+        </a>
+        <ul class="dropdown-menu"
+          aria-labelledby="signUp">
+          	<span th:unless="${#request.remoteUser}">
+	            <li><a class="dropdown-item" th:href="@{/auth/login/form}">Đăng nhập</a></li>
+	            <li><a class="dropdown-item" th:href="@{/auth/signup/form}">Đăng ký</a></li>
+	          	
+            </span>
+            <span th:if="${#request.remoteUser}">
+	            <li><a class="dropdown-item" href="#">Đổi mật khẩu</a></li>
+	            <li><a class="dropdown-item" href="#">Cập nhật thông tin</a></li>
+	            <li><a class="dropdown-item" th:href="@{/order/list}">Lịch sử mua hàng</a></li><hr>
+	            <li><a class="dropdown-item" th:href="@{/auth/logoff}">Đăng xuất</a></li>
+            </span>
+          
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</nav>
